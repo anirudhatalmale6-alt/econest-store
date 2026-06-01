@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EcoNest - Sustainable Living, Beautiful Products</title>
+  <meta name="description" content="Discover eco-friendly products that are good for you and the planet. Shop sustainable alternatives with educational eco-facts for every item.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌿</text></svg>">
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo" onclick="showHome()">
+        <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="18" cy="18" r="18" fill="#22713b"/>
+          <path d="M18 8c-2 4-8 8-8 14a8 8 0 0016 0c0-6-6-10-8-14z" fill="#68d391" opacity="0.7"/>
+          <path d="M18 12c-1.5 3-5 6-5 10a5 5 0 0010 0c0-4-3.5-7-5-10z" fill="#9ae6b4"/>
+          <line x1="18" y1="14" x2="18" y2="28" stroke="#22713b" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M18 18c2-1 4-1 5 0" stroke="#22713b" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M18 22c-2-1-4-1-5 0" stroke="#22713b" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+        </svg>
+        EcoNest
+      </a>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#" class="active" onclick="showHome()">Home</a></li>
+        <li><a href="#products-section" onclick="scrollToProducts()">Shop</a></li>
+        <li><a href="#why-eco">Why Eco?</a></li>
+        <li><a href="#" onclick="showAdmin(event)">Admin</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="search-btn" onclick="toggleSearch()" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+        <button class="cart-btn" onclick="toggleCart()" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="badge" id="cartBadge">0</span>
+        </button>
+        <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main id="mainContent">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg-pattern"></div>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-tag">
+            <span class="dot"></span>
+            Sustainable Shopping
+          </div>
+          <h1>Shop <em>Sustainably,</em> Live Beautifully</h1>
+          <p class="hero-desc">Every product in our store comes with a story of sustainability. Learn why each item helps the planet while enjoying beautiful, functional designs.</p>
+          <div class="hero-buttons">
+            <a href="#products-section" class="btn btn-primary" onclick="scrollToProducts()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+              Shop Now
+            </a>
+            <a href="#why-eco" class="btn btn-outline">
+              Learn More
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <div class="stat-number">50+</div>
+              <div class="stat-label">Eco Products</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Sustainable</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">0</div>
+              <div class="stat-label">Single-Use Plastic</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="hero-card-stack">
+            <div class="hero-floating-card">
+              <img src="https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400&h=300&fit=crop" alt="Eco product" loading="lazy">
+              <div class="card-info">
+                <h4>Bamboo Water Bottle</h4>
+                <span>$24.99</span>
+              </div>
+            </div>
+            <div class="hero-floating-card">
+              <img src="https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?w=400&h=300&fit=crop" alt="Eco product" loading="lazy">
+              <div class="card-info">
+                <h4>Bamboo Toothbrush</h4>
+                <span>$9.99</span>
+              </div>
+            </div>
+            <div class="hero-floating-card">
+              <img src="https://images.unsplash.com/photo-1597484661973-ee6cd0b6482c?w=400&h=300&fit=crop" alt="Eco product" loading="lazy">
+              <div class="card-info">
+                <h4>Organic Tote Bag</h4>
+                <span>$14.99</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECO IMPACT BANNER -->
+    <div class="eco-banner">
+      <div class="eco-banner-inner">
+        <div class="eco-stat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <span><strong>Zero</strong> harmful chemicals</span>
+        </div>
+        <div class="eco-stat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span><strong>Ethically</strong> sourced worldwide</span>
+        </div>
+        <div class="eco-stat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <span><strong>Carbon neutral</strong> shipping</span>
+        </div>
+        <div class="eco-stat">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          <span><strong>Eco-facts</strong> on every product</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="section" id="products-section">
+      <div class="section-header">
+        <span class="section-tag">Our Collection</span>
+        <h2>Eco-Friendly Products</h2>
+        <p>Browse our curated selection of sustainable products, each with detailed eco-facts so you know exactly how your purchase helps the planet.</p>
+      </div>
+
+      <div class="products-container">
+        <div class="category-filters" id="categoryFilters"></div>
+        <div class="products-grid" id="productsGrid"></div>
+        <div class="load-more-container" id="loadMoreContainer">
+          <button class="load-more-btn" onclick="loadMoreProducts()">Load More Products</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY ECO SECTION -->
+    <section class="section why-eco" id="why-eco">
+      <div class="section-header">
+        <span class="section-tag">Why Go Eco?</span>
+        <h2>Every Purchase Makes a Difference</h2>
+        <p>Understanding the impact of your choices is the first step toward a more sustainable lifestyle.</p>
+      </div>
+      <div class="why-eco-grid">
+        <div class="why-eco-card">
+          <div class="why-eco-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Reduce Plastic Pollution</h3>
+          <p>Over 8 million tons of plastic enter our oceans yearly. Every reusable product you buy means fewer single-use plastics in landfills and waterways.</p>
+        </div>
+        <div class="why-eco-card">
+          <div class="why-eco-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+          </div>
+          <h3>Lower Carbon Footprint</h3>
+          <p>Eco-friendly products typically use less energy to produce, ship in minimal packaging, and last longer - reducing overall carbon emissions.</p>
+        </div>
+        <div class="why-eco-card">
+          <div class="why-eco-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          </div>
+          <h3>Healthier for You</h3>
+          <p>Products free from toxic chemicals, BPA, and synthetic materials are better for your body. Natural ingredients mean safer homes and healthier lives.</p>
+        </div>
+        <div class="why-eco-card">
+          <div class="why-eco-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <h3>Support Communities</h3>
+          <p>Many eco products are fair-trade certified, supporting artisan communities and ensuring workers receive fair wages and safe working conditions.</p>
+        </div>
+        <div class="why-eco-card">
+          <div class="why-eco-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+          </div>
+          <h3>Save Money Long-Term</h3>
+          <p>Reusable products might cost more upfront but save hundreds of dollars over their lifetime. A safety razor saves $200+ per year vs disposables.</p>
+        </div>
+        <div class="why-eco-card">
+          <div class="why-eco-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+          </div>
+          <h3>Learn & Educate</h3>
+          <p>Every product has eco-facts that teach you about environmental impact. Share this knowledge and inspire others to make sustainable choices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="section newsletter">
+      <h2>Join the Green Movement</h2>
+      <p>Get updates on new eco-friendly products and sustainability tips.</p>
+      <form class="newsletter-form" onsubmit="handleNewsletter(event)">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </section>
+  </main>
+
+  <!-- CHECKOUT SECTION (hidden by default) -->
+  <section class="checkout-section" id="checkoutSection">
+    <div class="checkout-container">
+      <div class="checkout-header">
+        <button class="checkout-back" onclick="hideCheckout()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <h2>Checkout</h2>
+      </div>
+      <div class="checkout-grid">
+        <div>
+          <div class="checkout-form-section" style="margin-bottom:24px">
+            <div class="form-section-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Contact Information
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="John" id="firstName">
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Doe" id="lastName">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Email</label>
+                <input type="email" placeholder="john@example.com" id="email">
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-form-section" style="margin-bottom:24px">
+            <div class="form-section-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Shipping Address
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Address</label>
+                <input type="text" placeholder="123 Green Street" id="address">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" placeholder="Eco City" id="city">
+              </div>
+              <div class="form-group">
+                <label>Postal Code</label>
+                <input type="text" placeholder="12345" id="postalCode">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Country</label>
+                <select id="country">
+                  <option>United States</option>
+                  <option>Canada</option>
+                  <option>United Kingdom</option>
+                  <option>Australia</option>
+                  <option>India</option>
+                  <option>Germany</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="checkout-form-section">
+            <div class="form-section-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              Payment (Simulation)
+            </div>
+            <div class="form-row">
+              <div class="form-group full">
+                <label>Card Number</label>
+                <input type="text" placeholder="4242 4242 4242 4242" id="cardNumber" maxlength="19">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Expiry</label>
+                <input type="text" placeholder="MM/YY" id="expiry" maxlength="5">
+              </div>
+              <div class="form-group">
+                <label>CVC</label>
+                <input type="text" placeholder="123" id="cvc" maxlength="3">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="order-summary-card">
+            <h3>Order Summary</h3>
+            <div class="order-items-list" id="orderItemsList"></div>
+            <hr class="order-divider">
+            <div class="order-row">
+              <span>Subtotal</span>
+              <span id="orderSubtotal">$0.00</span>
+            </div>
+            <div class="order-row">
+              <span>Carbon-Neutral Shipping</span>
+              <span style="color:var(--green-600);font-weight:600">Free</span>
+            </div>
+            <div class="order-row">
+              <span>Eco Packaging</span>
+              <span style="color:var(--green-600);font-weight:600">Free</span>
+            </div>
+            <div class="order-total">
+              <span>Total</span>
+              <span id="orderTotal">$0.00</span>
+            </div>
+            <button class="place-order-btn" onclick="placeOrder()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Place Order (Demo)
+            </button>
+            <div class="eco-checkout-note">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+              <span>This is a demo checkout. No real payment will be processed. All orders are simulated for the school competition.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER SUCCESS (hidden by default) -->
+  <section class="order-success" id="orderSuccess">
+    <div class="success-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <h2>Order Confirmed!</h2>
+    <p>Thank you for choosing sustainable products. Your eco-friendly order is being prepared with love and recycled packaging.</p>
+    <div class="order-number" id="orderNumber">Order #ECO-000000</div>
+    <div class="eco-impact-card">
+      <h4>Your Eco Impact with This Order:</h4>
+      <div class="impact-items" id="impactItems">
+        <div class="impact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Saved plastic from entering landfills</span>
+        </div>
+        <div class="impact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Supported fair-trade communities</span>
+        </div>
+        <div class="impact-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Carbon-neutral delivery chosen</span>
+        </div>
+      </div>
+    </div>
+    <button class="continue-shopping-btn" onclick="continueShopping()">Continue Shopping</button>
+  </section>
+
+  <!-- ADMIN SECTION (hidden by default) -->
+  <section class="admin-section" id="adminSection">
+    <div class="admin-container">
+      <div class="admin-header">
+        <div>
+          <h2>Product Manager</h2>
+          <p style="color:var(--gray-500);font-size:0.9rem;margin-top:4px">Add, edit, or remove products from your store</p>
+        </div>
+        <div class="admin-toolbar">
+          <button class="admin-add-btn" onclick="openAdminModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Add Product
+          </button>
+          <button class="checkout-back" onclick="showHome()" title="Back to store" style="width:auto;padding:10px 20px;border-radius:8px;font-size:0.9rem;font-weight:600">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            Back to Store
+          </button>
+        </div>
+      </div>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Eco Facts</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT MODAL -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal">
+      <button class="modal-close" onclick="closeProductModal()">&times;</button>
+      <div class="modal-content" id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- CART DRAWER -->
+  <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        Your Cart
+        <span class="cart-count-label" id="cartCountLabel">0 items</span>
+      </h3>
+      <button class="cart-close" onclick="toggleCart()">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems"></div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cartSubtotal">$0.00</span>
+      </div>
+      <div class="cart-summary-row">
+        <span>Shipping</span>
+        <span style="color:var(--green-600);font-weight:600">Free (Eco)</span>
+      </div>
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn" onclick="goToCheckout()">Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay" onclick="closeSearchIfBg(event)">
+    <div class="search-box">
+      <div class="search-input-wrap">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search eco-friendly products..." id="searchInput" oninput="handleSearch(this.value)">
+      </div>
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- ADMIN MODAL -->
+  <div class="admin-modal-overlay" id="adminModalOverlay">
+    <div class="admin-modal">
+      <h3 id="adminModalTitle">Add New Product</h3>
+      <input type="hidden" id="adminEditId">
+      <div class="admin-form-group">
+        <label>Product Name</label>
+        <input type="text" id="adminName" placeholder="e.g., Bamboo Water Bottle">
+      </div>
+      <div class="admin-form-group">
+        <label>Category</label>
+        <select id="adminCategory">
+          <option>Kitchen & Dining</option>
+          <option>Personal Care</option>
+          <option>Home & Living</option>
+          <option>Fashion & Accessories</option>
+          <option>Garden & Outdoor</option>
+        </select>
+      </div>
+      <div class="admin-form-group">
+        <label>Price ($)</label>
+        <input type="number" step="0.01" id="adminPrice" placeholder="24.99">
+      </div>
+      <div class="admin-form-group">
+        <label>Image URL</label>
+        <input type="text" id="adminImage" placeholder="https://images.unsplash.com/...">
+      </div>
+      <div class="admin-form-group">
+        <label>Badge (optional)</label>
+        <select id="adminBadge">
+          <option value="">None</option>
+          <option value="Bestseller">Bestseller</option>
+          <option value="New">New</option>
+          <option value="Popular">Popular</option>
+        </select>
+      </div>
+      <div class="admin-form-group">
+        <label>Description</label>
+        <textarea id="adminDesc" placeholder="Describe the product..."></textarea>
+      </div>
+      <div class="admin-form-group">
+        <label>Eco Facts</label>
+        <div class="admin-eco-facts-inputs" id="adminEcoFacts">
+          <div class="eco-fact-row">
+            <input type="text" placeholder="Enter an eco fact...">
+            <button onclick="removeEcoFactRow(this)">&times;</button>
+          </div>
+        </div>
+        <button class="add-eco-fact-btn" onclick="addEcoFactRow()">+ Add Eco Fact</button>
+      </div>
+      <div class="admin-modal-actions">
+        <button class="admin-cancel-btn" onclick="closeAdminModal()">Cancel</button>
+        <button class="admin-save-btn" onclick="saveProduct()">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer" id="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <a href="#" class="logo" onclick="showHome()">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="18" fill="#22713b"/>
+            <path d="M18 8c-2 4-8 8-8 14a8 8 0 0016 0c0-6-6-10-8-14z" fill="#68d391" opacity="0.7"/>
+            <path d="M18 12c-1.5 3-5 6-5 10a5 5 0 0010 0c0-4-3.5-7-5-10z" fill="#9ae6b4"/>
+          </svg>
+          EcoNest
+        </a>
+        <p>Your one-stop shop for eco-friendly products. Every purchase you make helps create a more sustainable future for our planet.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#" onclick="filterByCategory('Kitchen & Dining')">Kitchen & Dining</a></li>
+          <li><a href="#" onclick="filterByCategory('Personal Care')">Personal Care</a></li>
+          <li><a href="#" onclick="filterByCategory('Home & Living')">Home & Living</a></li>
+          <li><a href="#" onclick="filterByCategory('Fashion & Accessories')">Fashion</a></li>
+          <li><a href="#" onclick="filterByCategory('Garden & Outdoor')">Garden & Outdoor</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Learn</h4>
+        <ul>
+          <li><a href="#why-eco">Why Go Eco?</a></li>
+          <li><a href="#">Sustainability Guide</a></li>
+          <li><a href="#">Environmental Impact</a></li>
+          <li><a href="#">Eco Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Shipping Info</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 EcoNest. All rights reserved. Made with care for the planet.</span>
+      <div class="footer-badges">
+        <span class="footer-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Eco-Certified
+        </span>
+        <span class="footer-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Cruelty-Free
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
