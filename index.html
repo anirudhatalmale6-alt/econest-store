@@ -28,6 +28,7 @@
         <li><a href="#" class="active" onclick="showHome()">Home</a></li>
         <li><a href="#products-section" onclick="scrollToProducts()">Shop</a></li>
         <li><a href="#why-eco">Why Eco?</a></li>
+        <li><a href="#eco-learning">Learn</a></li>
         <li><a href="#" onclick="showAdmin(event)">Admin</a></li>
       </ul>
 
@@ -200,6 +201,95 @@
           </div>
           <h3>Learn & Educate</h3>
           <p>Every product has eco-facts that teach you about environmental impact. Share this knowledge and inspire others to make sustainable choices.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ECO LEARNING CENTER -->
+    <section class="section eco-learning" id="eco-learning">
+      <div class="section-header">
+        <span class="section-tag">Eco Learning Center</span>
+        <h2>Understand Your Environmental Impact</h2>
+        <p>Explore in-depth educational content about the environmental issues that matter most. Knowledge is the first step toward meaningful change.</p>
+      </div>
+
+      <!-- Global Stats Ticker -->
+      <div class="global-stats-bar">
+        <div class="global-stats-inner" id="globalStats"></div>
+      </div>
+
+      <!-- Learning Topics Grid -->
+      <div class="learning-container">
+        <div class="learning-topics-grid" id="learningTopics"></div>
+      </div>
+
+      <!-- Category Deep Dives -->
+      <div class="category-education" style="max-width:1280px;margin:48px auto 0">
+        <h3 style="font-size:1.5rem;text-align:center;margin-bottom:32px;color:var(--gray-900)">Sustainability by Product Category</h3>
+        <div class="category-edu-tabs" id="categoryEduTabs"></div>
+        <div class="category-edu-content" id="categoryEduContent"></div>
+      </div>
+    </section>
+
+    <!-- ECO IMPACT CALCULATOR -->
+    <section class="section eco-calculator" id="eco-calculator">
+      <div class="section-header">
+        <span class="section-tag">Your Impact</span>
+        <h2>Eco Impact Calculator</h2>
+        <p>See how switching to eco-friendly products can reduce your environmental footprint over a year.</p>
+      </div>
+      <div class="calculator-container">
+        <div class="calc-card">
+          <div class="calc-input-group">
+            <label>How many people in your household?</label>
+            <div class="calc-slider-row">
+              <input type="range" min="1" max="10" value="4" id="calcHousehold" oninput="updateCalculator()">
+              <span class="calc-value" id="calcHouseholdVal">4</span>
+            </div>
+          </div>
+          <div class="calc-input-group">
+            <label>Eco products you'd switch to:</label>
+            <div class="calc-checks">
+              <label class="calc-check"><input type="checkbox" checked onchange="updateCalculator()"> Reusable bottles</label>
+              <label class="calc-check"><input type="checkbox" checked onchange="updateCalculator()"> Bamboo toothbrushes</label>
+              <label class="calc-check"><input type="checkbox" checked onchange="updateCalculator()"> Reusable bags</label>
+              <label class="calc-check"><input type="checkbox" onchange="updateCalculator()"> Shampoo bars</label>
+              <label class="calc-check"><input type="checkbox" onchange="updateCalculator()"> Beeswax wraps</label>
+              <label class="calc-check"><input type="checkbox" onchange="updateCalculator()"> Compost bin</label>
+              <label class="calc-check"><input type="checkbox" onchange="updateCalculator()"> Safety razor</label>
+              <label class="calc-check"><input type="checkbox" onchange="updateCalculator()"> Reusable straws</label>
+            </div>
+          </div>
+        </div>
+        <div class="calc-results" id="calcResults">
+          <div class="calc-result-card">
+            <div class="calc-result-icon" style="background:rgba(56,161,105,0.1);color:var(--green-600)">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+            </div>
+            <div class="calc-result-number" id="calcPlastic">0</div>
+            <div class="calc-result-label">Plastic items saved per year</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-icon" style="background:rgba(59,130,246,0.1);color:#3b82f6">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>
+            </div>
+            <div class="calc-result-number" id="calcWater">0</div>
+            <div class="calc-result-label">Gallons of water saved</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </div>
+            <div class="calc-result-number" id="calcCO2">0</div>
+            <div class="calc-result-label">Pounds of CO2 reduced</div>
+          </div>
+          <div class="calc-result-card">
+            <div class="calc-result-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            </div>
+            <div class="calc-result-number" id="calcMoney">$0</div>
+            <div class="calc-result-label">Money saved per year</div>
+          </div>
         </div>
       </div>
     </section>
@@ -571,6 +661,17 @@
       </div>
     </div>
   </footer>
+
+  <!-- LEARNING TOPIC MODAL -->
+  <div class="learning-modal-overlay" id="learningModalOverlay" onclick="if(event.target===this)closeLearningModal()">
+    <div class="learning-modal">
+      <div class="learning-modal-header">
+        <h2 id="learningModalTitle">Topic</h2>
+        <button class="learning-modal-close" onclick="closeLearningModal()">&times;</button>
+      </div>
+      <div class="learning-modal-body" id="learningModalBody"></div>
+    </div>
+  </div>
 
   <!-- TOAST -->
   <div class="toast" id="toast"></div>

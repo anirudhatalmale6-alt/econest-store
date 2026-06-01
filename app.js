@@ -15,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProducts();
   updateCartUI();
   initScrollEffects();
+  renderLearningCenter();
+  updateCalculator();
 });
 
 // ===== SCROLL EFFECTS =====
@@ -598,10 +600,194 @@ function showToast(message, type = '') {
   setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
+// ===== ECO LEARNING CENTER =====
+let currentEduCategory = 'Kitchen & Dining';
+
+function renderLearningCenter() {
+  renderGlobalStats();
+  renderLearningTopics();
+  renderCategoryEduTabs();
+  renderCategoryEduContent();
+}
+
+function renderGlobalStats() {
+  const container = document.getElementById('globalStats');
+  if (!container) return;
+  container.innerHTML = GLOBAL_ECO_STATS.map(stat => `
+    <div class="global-stat-card">
+      <div class="global-stat-number">${stat.number}</div>
+      <div class="global-stat-label">${stat.label}</div>
+    </div>
+  `).join('');
+}
+
+function renderLearningTopics() {
+  const container = document.getElementById('learningTopics');
+  if (!container) return;
+  const iconMap = {
+    'alert-triangle': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>',
+    'thermometer': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 14.76V3.5a2.5 2.5 0 00-5 0v11.26a4.5 4.5 0 105 0z"/></svg>',
+    'waves': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/></svg>',
+    'trees': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22V8"/><path d="M5 12H2l5-5 3 3 4-4 3 3 5-5h-3"/><circle cx="12" cy="5" r="3"/></svg>',
+    'droplet': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg>',
+    'recycle': '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>'
+  };
+
+  container.innerHTML = ECO_LEARNING_TOPICS.map(topic => `
+    <div class="learning-topic-card" onclick="openLearningModal('${topic.id}')">
+      <div class="learning-topic-header">
+        <div class="learning-topic-icon" style="background:${topic.color}15;color:${topic.color}">
+          ${iconMap[topic.icon] || ''}
+        </div>
+        <h3>${topic.title}</h3>
+      </div>
+      <div class="learning-topic-body">
+        <p>${topic.summary}</p>
+        <span class="learn-more-link">
+          Read more
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </span>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openLearningModal(topicId) {
+  const topic = ECO_LEARNING_TOPICS.find(t => t.id === topicId);
+  if (!topic) return;
+
+  document.getElementById('learningModalTitle').textContent = topic.title;
+  document.getElementById('learningModalBody').innerHTML = topic.content.map(block => `
+    <div class="learning-content-block">
+      <h3>${block.heading}</h3>
+      <p>${block.text}</p>
+    </div>
+  `).join('');
+
+  document.getElementById('learningModalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLearningModal() {
+  document.getElementById('learningModalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+function renderCategoryEduTabs() {
+  const container = document.getElementById('categoryEduTabs');
+  if (!container) return;
+  const cats = Object.keys(ECO_EDUCATION);
+  container.innerHTML = cats.map(cat => `
+    <button class="cat-edu-tab ${cat === currentEduCategory ? 'active' : ''}" onclick="switchEduCategory('${cat}')">${cat}</button>
+  `).join('');
+}
+
+function switchEduCategory(cat) {
+  currentEduCategory = cat;
+  renderCategoryEduTabs();
+  renderCategoryEduContent();
+}
+
+function renderCategoryEduContent() {
+  const container = document.getElementById('categoryEduContent');
+  if (!container) return;
+  const data = ECO_EDUCATION[currentEduCategory];
+  if (!data) return;
+
+  container.innerHTML = `
+    <div class="cat-edu-overview">
+      <div class="cat-edu-left">
+        <h3>${data.title}</h3>
+        <p class="overview-text">${data.overview}</p>
+        <div class="deep-dive">
+          <h4>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+            Deep Dive
+          </h4>
+          <p>${data.deepDive}</p>
+        </div>
+      </div>
+      <div class="cat-edu-right">
+        <div class="cat-edu-stats">
+          ${data.keyStats.map(s => `
+            <div class="cat-stat-card">
+              <div class="cat-stat-number">${s.number}</div>
+              <div class="cat-stat-label">${s.label}</div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="cat-edu-actions">
+          <h4>What You Can Do:</h4>
+          <ul>
+            ${data.whatYouCanDo.map(item => `<li>${item}</li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ===== ECO IMPACT CALCULATOR =====
+function updateCalculator() {
+  const household = parseInt(document.getElementById('calcHousehold').value);
+  document.getElementById('calcHouseholdVal').textContent = household;
+
+  const checkboxes = document.querySelectorAll('.calc-check input');
+  const impacts = [
+    { plastic: 167, water: 2000, co2: 83, money: 200 },   // bottles
+    { plastic: 4, water: 100, co2: 5, money: 25 },         // toothbrushes
+    { plastic: 500, water: 500, co2: 40, money: 50 },      // bags
+    { plastic: 6, water: 3000, co2: 15, money: 40 },       // shampoo bars
+    { plastic: 100, water: 200, co2: 8, money: 30 },       // beeswax wraps
+    { plastic: 0, water: 1000, co2: 200, money: 0 },       // compost
+    { plastic: 12, water: 500, co2: 10, money: 200 },      // safety razor
+    { plastic: 365, water: 100, co2: 5, money: 15 }        // straws
+  ];
+
+  let totalPlastic = 0, totalWater = 0, totalCO2 = 0, totalMoney = 0;
+  checkboxes.forEach((cb, i) => {
+    if (cb.checked && impacts[i]) {
+      totalPlastic += impacts[i].plastic;
+      totalWater += impacts[i].water;
+      totalCO2 += impacts[i].co2;
+      totalMoney += impacts[i].money;
+    }
+  });
+
+  totalPlastic *= household;
+  totalWater *= household;
+  totalCO2 *= household;
+  totalMoney *= household;
+
+  animateNumber('calcPlastic', totalPlastic, '');
+  animateNumber('calcWater', totalWater, '');
+  animateNumber('calcCO2', totalCO2, '');
+  document.getElementById('calcMoney').textContent = `$${totalMoney.toLocaleString()}`;
+}
+
+function animateNumber(id, target, suffix) {
+  const el = document.getElementById(id);
+  const current = parseInt(el.textContent.replace(/[^0-9]/g, '')) || 0;
+  const diff = target - current;
+  const steps = 20;
+  const stepValue = diff / steps;
+  let step = 0;
+
+  const animate = () => {
+    step++;
+    const val = Math.round(current + stepValue * step);
+    el.textContent = val.toLocaleString() + suffix;
+    if (step < steps) requestAnimationFrame(animate);
+    else el.textContent = target.toLocaleString() + suffix;
+  };
+  requestAnimationFrame(animate);
+}
+
 // ===== KEYBOARD SHORTCUTS =====
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeProductModal();
+    closeLearningModal();
     if (document.getElementById('searchOverlay').classList.contains('active')) toggleSearch();
     if (document.getElementById('cartDrawer').classList.contains('active')) toggleCart();
     closeAdminModal();
